@@ -544,7 +544,7 @@ html.dark .place-card {
 
     // Show display area
     const area = document.getElementById('display-area');
-    document.getElementById('display-text').textContent = `✅ "${text}" added to your list!`;
+    document.getElementById('display-text').textContent = ` "${text}" added to your list!`;
     area.classList.remove('hidden');
     setTimeout(() => area.classList.add('hidden'), 3000);
 
@@ -556,7 +556,7 @@ html.dark .place-card {
     const input = document.getElementById('custom-input');
     const val = input.value.trim();
     if (!val) return;
-    addActivity(val + ' ✍️');
+    addActivity(val + ' ');
     input.value = '';
   }
 
@@ -581,7 +581,7 @@ html.dark .place-card {
   const area = document.getElementById('greeting-area');
   const text = document.getElementById('greeting-text');
 
-  text.innerHTML = `🌍 <strong>Welcome to Rwanda., ${val}!</strong>  Your adventure in the Land of a Thousand Hills is about to begin.`;
+  text.innerHTML = ` <strong>Welcome to Rwanda 🤗, ${val}!</strong>  Your adventure in the Land of a Thousand Hills is about to begin.`;
 
   area.classList.remove('hidden');
 }
