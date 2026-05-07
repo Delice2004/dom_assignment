@@ -5,6 +5,178 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Discover Rwanda – Land of a Thousand Hills</title>
   <script src="https://cdn.tailwindcss.com"></script>
+
+    <style>
+    :root {
+      --green: #1a6b3a;
+      --gold: #c9a84c;
+      --cream: #f9f4ec;
+      --dark: #0f1f0f;
+    }
+    html.light { background: var(--cream); color: var(--dark); }
+    html.dark  { background: var(--dark); color: var(--cream); }
+
+    body { font-family: 'DM Sans', sans-serif; transition: background .4s, color .4s; }
+    h1,h2,h3,.font-display { font-family: 'Playfair Display', serif; }
+
+    /* NAV */
+    #navbar { backdrop-filter: blur(12px); -webkit-backdrop-filter: blur(12px); }
+    html.light #navbar { background: rgba(249,244,236,.88); border-bottom:1px solid rgba(26,107,58,.15); }
+    html.dark  #navbar { background: rgba(15,31,15,.88); border-bottom:1px solid rgba(201,168,76,.15); }
+
+    .nav-link { position:relative; }
+    .nav-link::after { content:''; position:absolute; bottom:-2px; left:0; width:0; height:2px; background:var(--gold); transition:.3s; }
+    .nav-link.active::after, .nav-link:hover::after { width:100%; }
+    .nav-link.active { color:var(--green) !important; }
+    html.dark .nav-link.active { color:var(--gold) !important; }
+
+    /* DROPDOWN */
+    #dropdown-menu { display:none; }
+    #dropdown-menu.open { display:block; }
+
+    /* HERO */
+    #hero { background: linear-gradient(135deg, #0f3320 0%, #1a6b3a 50%, #0f1f0f 100%); min-height:92vh; }
+    .hero-pattern { background-image: radial-gradient(circle at 20% 80%, rgba(201,168,76,.15) 0%, transparent 50%), radial-gradient(circle at 80% 20%, rgba(26,107,58,.3) 0%, transparent 50%); }
+
+    /* ═══════════════════════════ GRID LAYOUT FIX ═══════════════════════════ */
+#cards-grid {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr); /* FORCE 4 IN ONE LINE */
+  gap: 18px;
+  align-items: stretch;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  #cards-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+/* Mobile */
+@media (max-width: 640px) {
+  #cards-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* ═══════════════════════════ SMALL CARD STYLE ═══════════════════════════ */
+.place-card {
+  border-radius: 14px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: 0.3s ease;
+  transform: scale(0.98);
+}
+
+/* hover */
+.place-card:hover {
+  transform: scale(1.02) translateY(-6px);
+}
+
+/* LIGHT */
+html.light .place-card {
+  background: #fff;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.08);
+}
+
+/* DARK */
+html.dark .place-card {
+  background: #1a2e1a;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.4);
+}
+
+/* ═══════════════════════════ IMAGE SMALL FIX ═══════════════════════════ */
+.card-img {
+  width: 100%;
+  height: 140px;   /* SMALL IMAGE */
+  object-fit: cover;
+  display: block;
+}
+
+/* ═══════════════════════════ CONTENT ═══════════════════════════ */
+.place-card .p-5 {
+  padding: 14px;
+}
+
+/* text smaller */
+.place-card h3 {
+  font-size: 15px;
+}
+
+.place-card p {
+  font-size: 12px;
+  opacity: 0.75;
+}
+
+/* button */
+.btn-green {
+  font-size: 12px;
+  padding: 8px;
+}
+
+    /* SECTION backgrounds */
+    html.light .section-alt { background:#f0ede6; }
+    html.dark  .section-alt { background:#111d11; }
+
+    /* LIST items */
+    .list-item-row { display:flex; align-items:center; justify-content:space-between; padding:.6rem 1rem; border-radius:8px; margin-bottom:.4rem; transition:.2s; cursor:pointer; }
+    html.light .list-item-row { background:#fff; border:1px solid rgba(26,107,58,.15); }
+    html.dark  .list-item-row { background:#1a2e1a; border:1px solid rgba(201,168,76,.15); }
+    .list-item-row:hover { background:rgba(201,168,76,.12); }
+
+    /* BADGE */
+    .badge { background:var(--gold); color:#0f1f0f; font-weight:600; font-size:.7rem; padding:.2rem .5rem; border-radius:999px; }
+
+    /* FOOTER */
+    html.light footer { background:#0f3320; color:var(--cream); }
+    html.dark  footer { background:#060d06; color:var(--cream); }
+
+    /* TOGGLE BTN */
+    #theme-toggle { width:52px; height:28px; border-radius:999px; position:relative; cursor:pointer; transition:background .3s; border:none; }
+    html.light #theme-toggle { background:var(--green); }
+    html.dark  #theme-toggle { background:var(--gold); }
+    #theme-toggle::after { content:''; position:absolute; top:3px; width:22px; height:22px; border-radius:50%; background:#fff; transition:.3s; }
+    html.light #theme-toggle::after { left:3px; }
+    html.dark  #theme-toggle::after { left:27px; }
+
+    /* PARAGRAPH manipulation area */
+    html.light #text-box { background:#fff; border:1px solid rgba(26,107,58,.2); }
+    html.dark  #text-box { background:#1a2e1a; border:1px solid rgba(201,168,76,.2); }
+
+    /* SEARCH */
+    html.light input { background:#fff; border:1px solid rgba(26,107,58,.25); color:var(--dark); }
+    html.dark  input { background:#1a2e1a; border:1px solid rgba(201,168,76,.25); color:var(--cream); }
+    input:focus { outline:none; border-color:var(--gold); }
+    input::placeholder { color:#888; }
+
+    /* SELECTED section */
+    html.light #selected-section { background:#e8f5ee; border:1px solid rgba(26,107,58,.2); }
+    html.dark  #selected-section { background:#0d1f0d; border:1px solid rgba(201,168,76,.2); }
+
+    /* Hamburger lines */
+    .ham-line { display:block; width:24px; height:2px; margin:5px 0; border-radius:2px; transition:.3s; }
+    html.light .ham-line { background:var(--dark); }
+    html.dark  .ham-line { background:var(--cream); }
+
+    /* Mobile menu */
+    #mobile-menu { display:none; }
+    #mobile-menu.open { display:block; }
+
+    /* Scroll-reveal fade */
+    .reveal { opacity:0; transform:translateY(30px); transition:opacity .6s, transform .6s; }
+    .reveal.visible { opacity:1; transform:translateY(0); }
+
+    /* Green button */
+    .btn-green { background:var(--green); color:#fff; border:none; cursor:pointer; transition:.2s; }
+    .btn-green:hover { background:#145c2f; }
+    .btn-gold { background:var(--gold); color:#0f1f0f; border:none; cursor:pointer; font-weight:600; transition:.2s; }
+    .btn-gold:hover { background:#b8952e; }
+    /* Remove btn */
+    .remove-btn { background:transparent; border:none; cursor:pointer; color:#e05252; font-weight:700; font-size:1.1rem; line-height:1; padding:0 4px; }
+  </style>
+
  
  
 </head>
