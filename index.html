@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en" class="light">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Discover Rwanda – Land of a Thousand Hills</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+ 
+ 
+</head>
+<body>
+
+<!-- ═══════════════════════════ NAVBAR ═══════════════════════════ -->
+<nav id="navbar" class="fixed top-0 left-0 right-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 flex items-center justify-between h-16">
+
+    <!-- Logo -->
+    <a href="#" class="font-display text-xl font-bold" style="color:var(--green)">
+       <span class="hidden sm:inline">Visit</span> Rwanda
+    </a>
+
+    <!-- Desktop links -->
+    <div id="desktop-nav" class="hidden md:flex items-center gap-6 text-sm font-medium">
+      <a href="#hero"       class="nav-link active px-1 py-2 transition-colors" onclick="setActive(this)">Home</a>
+      <a href="#places"     class="nav-link px-1 py-2 transition-colors" onclick="setActive(this)">Places</a>
+
+      <!-- Dropdown -->
+      <div class="relative">
+        <button id="dropdown-btn" onclick="toggleDropdown()" class="nav-link px-1 py-2 flex items-center gap-1 transition-colors">
+          Explore <svg xmlns="http://www.w3.org/2000/svg" class="w-3 h-3" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+        </button>
+       <div id="dropdown-menu" class="absolute top-full left-0 mt-2 w-52 rounded-xl shadow-xl py-2 z-50"
+     style="background:var(--green); color:#fff;">
+
+  <a href="#places" class="block px-4 py-2 text-sm hover:bg-white/10 rounded-lg mx-1">
+     Volcanoes National Park
+  </a>
+
+  <a href="#places" class="block px-4 py-2 text-sm hover:bg-white/10 rounded-lg mx-1">
+     Lake Kivu
+  </a>
+
+  <a href="#places" class="block px-4 py-2 text-sm hover:bg-white/10 rounded-lg mx-1">
+     Kigali City
+  </a>
+
+  <a href="#places" class="block px-4 py-2 text-sm hover:bg-white/10 rounded-lg mx-1">
+     Nyungwe Forest
+  </a>
+
+</div>
+      </div>
+      <a href="#my-list"   class="nav-link px-1 py-2 transition-colors" onclick="setActive(this)">My List</a>
+      <a href="#contact"   class="nav-link px-1 py-2 transition-colors" onclick="setActive(this)">Contact</a>
+    </div>
+
+    <!-- Right controls -->
+    <div class="flex items-center gap-3">
+      <button id="theme-toggle" onclick="toggleTheme()" aria-label="Toggle theme"></button>
+      <!-- Hamburger -->
+      <button id="hamburger" onclick="toggleMobileMenu()" class="md:hidden flex flex-col justify-center p-1">
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+        <span class="ham-line"></span>
+      </button>
+    </div>
+  </div>
+
+  <!-- Mobile menu -->
+  <div id="mobile-menu" class="md:hidden px-4 pb-4 space-y-1 text-sm font-medium border-t" style="border-color:rgba(26,107,58,.2)">
+    <a href="#hero"       class="nav-link block py-2" onclick="setActive(this);toggleMobileMenu()">Home</a>
+    <a href="#places"     class="nav-link block py-2" onclick="setActive(this);toggleMobileMenu()">Places</a>
+    <a href="#my-list"    class="nav-link block py-2" onclick="setActive(this);toggleMobileMenu()">My List</a>
+    <a href="#contact"    class="nav-link block py-2" onclick="setActive(this);toggleMobileMenu()">Contact</a>
+    <hr style="border-color:rgba(201,168,76,.3)" class="my-1"/>
+    <!-- Mobile Explore dropdown -->
+    <button id="mobile-explore-btn" onclick="toggleMobileExplore()" class="w-full flex items-center justify-between py-2 text-sm font-medium">
+      <span>Explore</span>
+      <svg id="mobile-explore-arrow" xmlns="http://www.w3.org/2000/svg" class="w-4 h-4 transition-transform duration-300" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"/></svg>
+    </button>
+   <div id="mobile-explore-menu" class="hidden pl-2 space-y-1 pb-1">
+
+  <a href="#places" onclick="toggleMobileMenu()" class="block py-1.5 text-sm rounded-lg px-2 hover:bg-white/10 transition-colors">
+    Volcanoes National Park
+  </a>
+
+  <a href="#places" onclick="toggleMobileMenu()" class="block py-1.5 text-sm rounded-lg px-2 hover:bg-white/10 transition-colors">
+    Lake Kivu
+  </a>
+
+  <a href="#places" onclick="toggleMobileMenu()" class="block py-1.5 text-sm rounded-lg px-2 hover:bg-white/10 transition-colors">
+     Kigali City
+  </a>
+
+  <a href="#places" onclick="toggleMobileMenu()" class="block py-1.5 text-sm rounded-lg px-2 hover:bg-white/10 transition-colors">
+     Nyungwe Forest
+  </a>
+
+</div>
+  </div>
+</nav>
+
+<!-- ═══════════════════════════ HERO ═══════════════════════════ -->
+<section id="hero" class="hero-pattern flex items-center justify-center text-center px-4 pt-16">
+  <div class="max-w-3xl mx-auto py-32 reveal">
+    <p class="text-sm font-medium tracking-widest mb-4" style="color:var(--gold)">DISCOVER THE LAND OF A THOUSAND HILLS</p>
+    <h1 class="font-display text-5xl sm:text-7xl font-black text-white leading-tight mb-6">
+      Rwanda<br/><span style="color:var(--gold)">Awaits You</span>
+    </h1>
+    <p class="text-white/70 text-lg mb-10 max-w-xl mx-auto">
+      From misty volcanoes to serene lakes, Rwanda offers breathtaking landscapes, rich culture, and unforgettable wildlife encounters.
+    </p>
+    <div class="flex flex-wrap justify-center gap-4">
+      <a href="#places" class="btn-gold px-7 py-3 rounded-full text-sm font-bold">Explore Places</a>
+      
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ TEXT MANIPULATION ═══════════════════════════ -->
+<section class="section-alt py-16 px-4">
+  <div class="max-w-3xl mx-auto text-center reveal">
+    <h2 class="font-display text-3xl font-bold mb-2">Did You Know?</h2>
+    <p class="opacity-60 mb-6 text-sm">Learn fascinating facts about Rwanda</p>
+    <div id="text-box" class="rounded-2xl p-8 mb-6">
+      <p id="fact-text" class="text-lg leading-relaxed">
+        Rwanda is often called <strong>"The Land of a Thousand Hills"</strong> — Pays des Mille Collines — because of its stunning mountainous landscape that covers virtually the entire country.
+      </p>
+    </div>
+    <div class="flex flex-wrap justify-center gap-3">
+      <button onclick="changeFact()" class="btn-green px-6 py-2.5 rounded-full text-sm font-semibold">Next Fact </button>
+      <button onclick="resetFact()" class="border px-6 py-2.5 rounded-full text-sm font-semibold transition-colors" style="border-color:var(--green);color:var(--green)" onmouseover="this.style.background='var(--green)';this.style.color='#fff'" onmouseout="this.style.background='transparent';this.style.color='var(--green)'">Reset</button>
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ PLACES (CARDS) ═══════════════════════════ -->
+<section id="places" class="py-20 px-4">
+  <div class="max-w-7xl mx-auto">
+
+    <div class="text-center mb-12 reveal">
+      <p class="text-xs font-semibold tracking-widest mb-2" style="color:var(--gold)">TOP DESTINATIONS</p>
+      <h2 class="font-display text-4xl font-bold mb-3">Special Places in Rwanda</h2>
+      <p class="opacity-60 max-w-xl mx-auto">Handpicked experiences that showcase the very best of this remarkable country</p>
+    </div>
+
+    <!-- ✅ THIS IS THE FIX -->
+    <div id="cards-grid">
+
+      <!-- CARD 1 -->
+      <div class="place-card">
+        <img class="card-img" src="volcano.jpg" alt="">
+        <div class="p-5">
+          <span class="badge mb-2 inline-block">Nature</span>
+          <h3 class="font-display text-lg font-bold mb-1">Volcanoes National Park</h3>
+          <p class="text-sm opacity-70 mb-4">Home to endangered mountain gorillas...</p>
+          <button onclick="addActivity('Volcanoes National Park ')" class="btn-green w-full py-2 rounded-xl text-sm font-semibold">Add to My List</button>
+        </div>
+      </div>
+
+      <!-- CARD 2 -->
+      <div class="place-card">
+        <img class="card-img" src="lake.jpg" alt="">
+        <div class="p-5">
+          <span class="badge mb-2 inline-block"> Lakes</span>
+          <h3 class="font-display text-lg font-bold mb-1">Lake Kivu</h3>
+          <p class="text-sm opacity-70 mb-4">One of Africa's Great Lakes...</p>
+          <button onclick="addActivity('Lake Kivu ')" class="btn-green w-full py-2 rounded-xl text-sm font-semibold">Add to My List</button>
+        </div>
+      </div>
+
+      <!-- CARD 3 -->
+      <div class="place-card">
+        <img class="card-img" src="kigali.jpg" alt="">
+        <div class="p-5">
+          <span class="badge mb-2 inline-block"> City</span>
+          <h3 class="font-display text-lg font-bold mb-1">Kigali City</h3>
+          <p class="text-sm opacity-70 mb-4">Africa's cleanest city...</p>
+          <button onclick="addActivity('Kigali City ')" class="btn-green w-full py-2 rounded-xl text-sm font-semibold">Add to My List</button>
+        </div>
+      </div>
+
+      <!-- CARD 4 -->
+      <div class="place-card">
+        <img class="card-img" src="nyungwe.jpg" alt="">
+        <div class="p-5">
+          <span class="badge mb-2 inline-block"> Forest</span>
+          <h3 class="font-display text-lg font-bold mb-1">Nyungwe Forest</h3>
+          <p class="text-sm opacity-70 mb-4">Walk above the canopy...</p>
+          <button onclick="addActivity('Nyungwe Forest ')" class="btn-green w-full py-2 rounded-xl text-sm font-semibold">Add to My List</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ MY LIST + SEARCH ═══════════════════════════ -->
+<section id="my-list" class="py-20 px-4">
+  <div class="max-w-3xl mx-auto">
+    <div class="text-center mb-10 reveal">
+      <p class="text-xs font-semibold tracking-widest mb-2" style="color:var(--gold)">YOUR BUCKET LIST</p>
+      <h2 class="font-display text-4xl font-bold mb-3">My Rwanda List</h2>
+      <p class="opacity-60">Add your own experiences or pick from the cards above</p>
+    </div>
+
+    <!-- Add custom item -->
+    <div class="flex gap-3 mb-6 reveal">
+      <input id="custom-input" type="text" placeholder="Add your own experience…" class="flex-1 px-4 py-3 rounded-xl text-sm" onkeydown="if(event.key==='Enter') addCustom()"/>
+      <button onclick="addCustom()" class="btn-gold px-6 py-3 rounded-xl text-sm font-bold flex-shrink-0">+ Add</button>
+    </div>
+
+    <!-- Search -->
+    <div class="relative mb-6 reveal">
+      <svg class="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 opacity-50" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0"/></svg>
+      <input id="search-input" type="text" placeholder="Search your list…" class="w-full pl-10 pr-4 py-3 rounded-xl text-sm" oninput="filterList()"/>
+    </div>
+
+    <!-- Display input value -->
+    <div id="display-area" class="hidden mb-4 p-3 rounded-xl text-sm" style="background:rgba(201,168,76,.15);border:1px solid rgba(201,168,76,.3)">
+      <span id="display-text"></span>
+    </div>
+
+    <!-- List -->
+    <ul id="activities-list" class="reveal">
+      <li class="list-item-row opacity-60 text-sm italic justify-center" id="empty-msg">No activities yet — add some above or from the cards! 🌍</li>
+    </ul>
+
+    <p class="text-xs opacity-40 mt-3 text-center">Click any item to remove it from your list</p>
+  </div>
+</section>
+
+<!-- ═══════════════════════════ CONTACT / INPUT DEMO ═══════════════════════════ -->
+<section id="contact" class="section-alt py-20 px-4">
+  <div class="max-w-2xl mx-auto reveal">
+    <div class="text-center mb-10">
+      <p class="text-xs font-semibold tracking-widest mb-2" style="color:var(--gold)">GET IN TOUCH</p>
+      <h2 class="font-display text-4xl font-bold mb-3">Plan Your Trip</h2>
+      <p class="opacity-60">Enter your name and we'll personalise your Rwanda experience</p>
+    </div>
+    <div class="place-card rounded-2xl p-8">
+      <div class="flex gap-3 mb-5">
+        <input id="name-input" type="text" placeholder="Your name" class="flex-1 px-4 py-3 rounded-xl text-sm"/>
+        <button onclick="showName()" class="btn-green px-6 py-3 rounded-xl text-sm font-semibold flex-shrink-0">Submit</button>
+      </div>
+      <div id="greeting-area" class="hidden p-4 rounded-xl text-sm" style="background:rgba(26,107,58,.1);border:1px solid rgba(26,107,58,.2)">
+        <p id="greeting-text"></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+
+<!-- ═══════════════════════════ JAVASCRIPT ═══════════════════════════ -->
