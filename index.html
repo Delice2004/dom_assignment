@@ -454,6 +454,160 @@ html.dark .place-card {
   </div>
 </footer>
 
+<!-- ═══════════════════════════ JAVASCRIPT ═══════════════════════════ -->
+<script>
+  /* ── THEME ── */
+  function toggleTheme() {
+    const html = document.documentElement;
+    html.classList.toggle('dark');
+    html.classList.toggle('light');
+  }
+
+  /* ── NAVBAR ACTIVE LINK ── */
+  function setActive(el) {
+    document.querySelectorAll('.nav-link').forEach(l => l.classList.remove('active'));
+    el.classList.add('active');
+  }
+
+  /* ── DROPDOWN ── */
+  function toggleDropdown() {
+    document.getElementById('dropdown-menu').classList.toggle('open');
+  }
+  document.addEventListener('click', function(e) {
+    if (!document.getElementById('dropdown-btn').contains(e.target)) {
+      document.getElementById('dropdown-menu').classList.remove('open');
+    }
+  });
+
+  /* ── HAMBURGER ── */
+  function toggleMobileMenu() {
+    document.getElementById('mobile-menu').classList.toggle('open');
+    // Reset explore submenu when closing hamburger
+    if (!document.getElementById('mobile-menu').classList.contains('open')) {
+      document.getElementById('mobile-explore-menu').classList.add('hidden');
+      document.getElementById('mobile-explore-arrow').style.transform = '';
+    }
+  }
+
+  /* ── MOBILE EXPLORE DROPDOWN ── */
+  function toggleMobileExplore() {
+    const menu = document.getElementById('mobile-explore-menu');
+    const arrow = document.getElementById('mobile-explore-arrow');
+    menu.classList.toggle('hidden');
+    arrow.style.transform = menu.classList.contains('hidden') ? '' : 'rotate(180deg)';
+  }
+
+  /* ── FACT ROTATION ── */
+  const facts = [
+    'Rwanda is often called <strong>"The Land of a Thousand Hills"</strong> — Pays des Mille Collines — because of its stunning mountainous landscape.',
+    'Rwanda is one of the <strong>world\'s largest coffee producers</strong>. Rwandan coffee is celebrated globally for its rich, fruity, and complex flavour profile.',
+    'Rwanda has one of the highest proportions of <strong>female parliamentarians</strong> in the world, exceeding 60% — a remarkable achievement in gender equality.',
+    'The <strong>gorilla trekking permit</strong> in Volcanoes National Park costs $1,500. Revenue directly funds conservation and local community development.',
+    'Kigali is consistently rated as one of <strong>Africa\'s cleanest and safest cities</strong> — plastic bags have been banned since 2008.',
+    'Rwanda\'s <strong>Umuganda</strong> community day happens every last Saturday of the month — citizens come together to clean and build their neighbourhoods.',
+    'Nyungwe Forest is one of Africa\'s oldest rainforests — it survived the last <strong>Ice Age</strong> and harbours extraordinary biodiversity including 13 primate species.',
+  ];
+  let factIndex = 0;
+  function changeFact() {
+    factIndex = (factIndex + 1) % facts.length;
+    document.getElementById('fact-text').innerHTML = facts[factIndex];
+  }
+  function resetFact() {
+    factIndex = 0;
+    document.getElementById('fact-text').innerHTML = facts[0];
+  }
+
+  /* ── ACTIVITIES LIST ── */
+  const listEl = document.getElementById('activities-list');
+  const emptyMsg = document.getElementById('empty-msg');
+
+  function addActivity(text) {
+    emptyMsg && (emptyMsg.style.display = 'none');
+    const li = document.createElement('li');
+    li.className = 'list-item-row';
+    li.innerHTML = `<span class="text-sm">${text}</span><button class="remove-btn" title="Remove">×</button>`;
+    li.querySelector('.remove-btn').addEventListener('click', () => {
+      li.remove();
+      if (listEl.querySelectorAll('li:not(#empty-msg)').length === 0) {
+        emptyMsg.style.display = 'flex';
+      }
+    });
+    // Click row to remove
+    li.addEventListener('click', function(e) {
+      if (e.target.classList.contains('remove-btn')) return;
+      li.remove();
+      if (listEl.querySelectorAll('li:not(#empty-msg)').length === 0) {
+        emptyMsg.style.display = 'flex';
+      }
+    });
+    listEl.appendChild(li);
+
+    // Show display area
+    const area = document.getElementById('display-area');
+    document.getElementById('display-text').textContent = `✅ "${text}" added to your list!`;
+    area.classList.remove('hidden');
+    setTimeout(() => area.classList.add('hidden'), 3000);
+
+    // Scroll to list
+    document.getElementById('my-list').scrollIntoView({ behavior: 'smooth', block: 'start' });
+  }
+
+  function addCustom() {
+    const input = document.getElementById('custom-input');
+    const val = input.value.trim();
+    if (!val) return;
+    addActivity(val + ' ✍️');
+    input.value = '';
+  }
+
+  /* ── SEARCH / FILTER ── */
+  function filterList() {
+    const q = document.getElementById('search-input').value.toLowerCase();
+    const items = listEl.querySelectorAll('li:not(#empty-msg)');
+    items.forEach(li => {
+      li.style.display = li.textContent.toLowerCase().includes(q) ? 'flex' : 'none';
+    });
+  }
+
+  /* ── NAME INPUT ── */
+ function showName() {
+  const val = document.getElementById('name-input').value.trim();
+
+  if (!val) {
+    alert("Please enter your name first ");
+    return;
+  }
+
+  const area = document.getElementById('greeting-area');
+  const text = document.getElementById('greeting-text');
+
+  text.innerHTML = `🌍 <strong>Murakaza neza, ${val}!</strong> Welcome to Rwanda. Your adventure in the Land of a Thousand Hills is about to begin.`;
+
+  area.classList.remove('hidden');
+}
+
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+  }, { threshold: 0.1 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── ACTIVE NAV ON SCROLL ── */
+  const sections = ['hero','places','activities','my-list','contact'];
+  window.addEventListener('scroll', () => {
+    let current = '';
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && window.scrollY >= el.offsetTop - 100) current = id;
+    });
+    document.querySelectorAll('#desktop-nav .nav-link').forEach(link => {
+      link.classList.remove('active');
+      if (link.getAttribute('href') === '#' + current) link.classList.add('active');
+    });
+  });
+</script>
+
+
 
 
 </body>
